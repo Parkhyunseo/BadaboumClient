@@ -9,7 +9,7 @@ using YoutubeExplode;
 using YoutubeExplode.Models.ClosedCaptions;
 using YoutubeExplode.Models.MediaStreams;
 
-namespace YoutubePlayer
+namespace YoutubePlayers
 {
     /// <summary>
     /// Downloads and plays Youtube videos a VideoPlayer component

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace YoutubePlayer.Users.Authentications
+namespace SharedYoutubePlayer.Users.Authentications
 {
-    public static class Authentication
+    public class Authentication
     {
         private Authentication()
         {
@@ -13,12 +13,12 @@ namespace YoutubePlayer.Users.Authentications
 
         public bool LogIn()
         {
-
+            return true;
         }
 
         public bool LogOut()
         {
-            
+            return true;
         }
     }
 }

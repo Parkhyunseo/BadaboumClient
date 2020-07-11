@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace YoutubePlayer
+namespace YoutubePlayers
 {
     public class DownloadYoutubeVideo : MonoBehaviour, IProgress<double>
     {

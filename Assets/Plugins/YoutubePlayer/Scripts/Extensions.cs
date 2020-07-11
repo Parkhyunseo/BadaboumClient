@@ -5,7 +5,7 @@ using System.Text;
 using YoutubeExplode.Models.ClosedCaptions;
 using YoutubeExplode.Models.MediaStreams;
 
-namespace YoutubePlayer
+namespace YoutubePlayers
 {
     public static class Extensions
     {

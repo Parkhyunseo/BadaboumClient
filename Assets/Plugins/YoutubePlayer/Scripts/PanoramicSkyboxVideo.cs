@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
-namespace YoutubePlayer
+namespace YoutubePlayers
 {
     [RequireComponent(typeof(VideoPlayer))]
     public class PanoramicSkyboxVideo : MonoBehaviour

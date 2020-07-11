@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Video;
 using YoutubeExplode.Models.ClosedCaptions;
 
-namespace YoutubePlayer
+namespace YoutubePlayers
 {
     /// <summary>
     /// Downloads and plays Youtube captions on a TextMesh Pro component.
