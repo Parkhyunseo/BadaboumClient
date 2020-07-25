@@ -4,14 +4,12 @@ using UnityEngine;
 
 namespace SharedYoutubePlayer.Player
 {
+    [System.Serializable]
     public class Link
     {
-        public string URL {get; private set;}
-        public string title {get; private set;}
-        public Link(string URL, string title)
-        {
-            this.URL = URL;
-            this.title = title;
-        }
+        public string id;
+        public string key;
+        public string name;
+        public string URL => $"https://www.youtube.com/watch?v={key}"; 
     }
 }

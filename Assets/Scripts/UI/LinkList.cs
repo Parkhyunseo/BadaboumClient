@@ -22,13 +22,13 @@ namespace SharedYoutubePlayer.UI
             UpdateList();
         }
 
-        void CreateItem(Link link)
+        public void CreateItem(Link link)
         {
             var item = Instantiate(_itemPrefab);
             item.transform.SetParent(transform);
             item.player = _player;
             item.link = link;
-            item.SetText(link.title);
+            item.SetText(link.name);
 
             _list.Add(item);
         }
@@ -42,8 +42,7 @@ namespace SharedYoutubePlayer.UI
         public void UpdateList()
         {
             Clear();
-            foreach(var link in API.YoutubeLink.instance.GetList())
-                CreateItem(link);
+            API.YoutubeLink.instance.GetList(CreateItem);
         }
 
         public async void PlayNext(LinkItem current)

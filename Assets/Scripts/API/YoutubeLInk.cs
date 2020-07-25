@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using SharedYoutubePlayer.Player;
+using Proyecto26;
 
 namespace SharedYoutubePlayer.API
 {
     public class YoutubeLink
     {
+        private readonly string basePath = "https://codewear-musicplayer.herokuapp.com";
         List<Link> cached;
         LinkFactory _linkFactory = new LinkFactory();
 
@@ -50,16 +52,49 @@ namespace SharedYoutubePlayer.API
         private YoutubeLink()
         {
             cached = new List<Link>();
-            foreach(var url in links)
-                cached.Add(_linkFactory.GetLink(url.Item1, url.Item2));
         }
 
-        public List<Link> GetList()
+        public void GetList(System.Action<Link> success, System.Action fail=null)
         {
             if(cached == null)
                 cached = new List<Link>();
 
-            return cached;
+            RestClient.Get<VideoListResponse>(basePath + "/videolist").Then(res => {
+                foreach(var item in res.data)
+                    success?.Invoke(item);
+
+                cached = new List<Link>(res.data);
+		    }).Catch(err => Debug.LogError($"Error {err.Message}"));
+        }
+
+        public void AddLink(Link link, System.Action<Link> success, System.Action fail=null)
+        {
+            if(cached == null)
+                cached = new List<Link>();
+
+            var postListRequest = new RequestHelper {
+                Uri = basePath + "/video",
+                Body = new VideoAddRequest {
+                    videoKey = link.key,
+                    videoName = link.name
+                },
+                EnableDebug = true
+            };
+
+            RestClient.Post<LoginResponse>(postListRequest).Then(res => {
+                if(res.status == "201")
+                {
+                    success?.Invoke(link);
+                    cached.Add(link);
+                }else
+                {
+                    fail?.Invoke();
+                }
+                
+		    }).Catch(err => {
+                fail?.Invoke();
+                Debug.LogError($"Error, {err.Message})");
+            });
         }
     }
 
